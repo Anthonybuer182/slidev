@@ -48,7 +48,8 @@ css: unocss
 Java是纯面向对象的使用方法和属性必须要导入类或接口，除非是lang包下的不需要导入
 <br/>
 Go直接导入包(路径)即可，导入后可以使用此包下面所有开放的函数和属性
-
+| Java   | Go  |
+|  ----  | ----  |
 <div grid="~ cols-2 gap-2" m="-t-2">
 
 ```ts {all|2|1-6|9|all}
@@ -89,7 +90,8 @@ Java 修饰符 变量类型 变量名
 <br/>
 Go var 变量名 变量类型
 结构体或变量名大写之后才能对外暴露  
-
+| Java   | Go    |
+|  ----  | ----  |
 <div grid="~ cols-2 gap-2" m="-t-2">
 
 ```ts {all|2|1-6|9|all}
@@ -111,11 +113,14 @@ type WQuser struct {
 </div>
 ---
 
-# 函数及函数的返回值
+# 函数的返回值和方法调用
 
-Go 函数的返回值可以有多个
-
-<div grid="~ cols-1 gap-2" m="-t-2">
+Go 函数的返回值可以有多个 结构体和方法的关系是组合 
+<br/>
+Java 结构体和方法的关系是包含 
+| Go 函数   | Go 方法    |
+|  ----  | ----  |
+<div grid="~ cols-2 gap-2" m="-t-2">
 
 ```ts {all|2|1-6|9|all}
 package main
@@ -140,4 +145,321 @@ func verify(phone string) (string, string) {
 	return phone, errorMsg
 }
 ```
+```ts {all|2|1-6|9|all}
+package main
+
+import "fmt"
+
+type user struct {
+	name string
+	age  int8
+}
+
+func (u user) dec() {
+	fmt.Println(u.name, "今年", u.age)
+}
+func main() {
+	u := user{"张三", 28}
+	u.dec()
+	//  张三 今年 28
+}
+
+```
 </div>
+---
+
+# 指针
+
+Go 函数的返回值可以有多个 结构体和方法的关系是组合 
+<br/>
+Java 结构体和方法的关系是包含 
+| Java  | Go     |
+|  ----  | ----  |
+<div grid="~ cols-2 gap-2" m="-t-2">
+
+```ts {all|2|1-6|9|all}
+
+public class Test1 {
+    class User{
+        String name;
+    }
+    public User createUser(){
+        User user=new User();
+        user.name="张三";
+        return user;
+    }
+    public  User updateUser(User user){
+        user.name="李四";
+        return user;
+    }
+    public static void main(String[] args) {
+        Test1 test=new Test1();
+        User testUser = test.createUser();
+        User updateUser = test.updateUser(testUser);
+        System.out.println("地址："+testUser+" 姓名: "+testUser.name);
+        System.out.println("地址："+updateUser+" 姓名: "+updateUser.name);
+//        地址：Test1$User@3498ed 年龄: 李四
+//        地址：Test1$User@3498ed 年龄: 李四
+    }
+}
+
+```
+```ts {all|2|1-6|9|all}
+package main
+
+import "fmt"
+
+type person struct {
+	name string
+	age  int8
+}
+
+// func createPerson(p1 *person) *person {
+func createPerson(p1 person) person {
+	p1.name = "李四"
+	return p1
+}
+func main() {
+	p := person{"张三", 2}
+	p1 := createPerson(p)
+	fmt.Println(p)
+	fmt.Println(p1)
+	// {张三 2}
+	// {李四 2}
+}
+
+```
+</div>
+---
+
+# 接口
+
+Go 结构体实现的接口 需要在外面组合到结构体中
+<br/>
+Java 中的接口感觉就是定义了个抽象模型
+| Java  | Go     |
+|  ----  | ----  |
+<div grid="~ cols-2 gap-2" m="-t-2">
+
+```ts {all|2|1-6|9|all}
+
+
+public class Test2 {
+    void test (){
+        User person=new User();
+        person.say();
+        person.work();
+    }
+    public static void main(String[] args) {
+      new Test2().test();
+    }
+
+    interface Person{
+        void say();
+    }
+    interface Worker{
+        void work();
+    }
+    class User implements Person,Worker{
+        @Override
+        public void say() {
+            System.out.println("说话");
+        }
+
+        @Override
+        public void work() {
+            System.out.println("工作");
+        }
+    }
+}
+
+
+```
+```ts {all|2|1-6|9|all}
+package main
+
+import "fmt"
+
+type Person interface {
+	say()
+}
+type Worker interface {
+	work()
+}
+
+type User struct{}
+
+func (u User) say() {
+	fmt.Println("说话")
+}
+func (u User) work() {
+	fmt.Println("工作")
+}
+
+func main() {
+	u := User{}
+	u.say()
+	u.work()
+	// 说话
+	// 工作
+}
+
+
+```
+</div>
+
+---
+
+# Channal和协程
+
+Go 结构体实现的接口 需要在外面组合到结构体中
+<br/>
+Java 中的接口感觉就是定义了个抽象模型
+| Java  | Go     |
+|  ----  | ----  |
+<div grid="~ cols-2 gap-2" m="-t-2">
+
+```ts {all|2|1-6|9|all}
+
+
+public class Test2 {
+    void test (){
+        User person=new User();
+        person.say();
+        person.work();
+    }
+    public static void main(String[] args) {
+      new Test2().test();
+    }
+
+    interface Person{
+        void say();
+    }
+    interface Worker{
+        void work();
+    }
+    class User implements Person,Worker{
+        @Override
+        public void say() {
+            System.out.println("说话");
+        }
+
+        @Override
+        public void work() {
+            System.out.println("工作");
+        }
+    }
+}
+
+
+```
+```ts {all|2|1-6|9|all}
+package main
+
+import "fmt"
+
+type Person interface {
+	say()
+}
+type Worker interface {
+	work()
+}
+
+type User struct{}
+
+func (u User) say() {
+	fmt.Println("说话")
+}
+func (u User) work() {
+	fmt.Println("工作")
+}
+
+func main() {
+	u := User{}
+	u.say()
+	u.work()
+	// 说话
+	// 工作
+}
+
+
+```
+</div>
+---
+
+# 闭包
+
+Go 结构体实现的接口 需要在外面组合到结构体中
+<br/>
+Java 中的接口感觉就是定义了个抽象模型
+| Java  | Go     |
+|  ----  | ----  |
+<div grid="~ cols-2 gap-2" m="-t-2">
+
+```ts {all|2|1-6|9|all}
+
+
+public class Test2 {
+    void test (){
+        User person=new User();
+        person.say();
+        person.work();
+    }
+    public static void main(String[] args) {
+      new Test2().test();
+    }
+
+    interface Person{
+        void say();
+    }
+    interface Worker{
+        void work();
+    }
+    class User implements Person,Worker{
+        @Override
+        public void say() {
+            System.out.println("说话");
+        }
+
+        @Override
+        public void work() {
+            System.out.println("工作");
+        }
+    }
+}
+
+
+```
+```ts {all|2|1-6|9|all}
+package main
+
+import "fmt"
+
+type Person interface {
+	say()
+}
+type Worker interface {
+	work()
+}
+
+type User struct{}
+
+func (u User) say() {
+	fmt.Println("说话")
+}
+func (u User) work() {
+	fmt.Println("工作")
+}
+
+func main() {
+	u := User{}
+	u.say()
+	u.work()
+	// 说话
+	// 工作
+}
+
+
+```
+</div>
+
