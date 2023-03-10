@@ -463,3 +463,53 @@ func main() {
 ```
 </div>
 
+---
+
+# Beego
+
+beego是一个快速开发Go应用的http框架，基于mvc架构可以快速开发API、Web、后端服务等各种应用，是一个RESTFul的框架
+
+<div grid="~ cols-2 gap-2" m="-t-2">
+
+```yaml
+beego web服务架构
+```
+
+```yaml
+beego 脚手架生成的web项目目录结构
+```
+
+<img border="rounded" src="https://camo.githubusercontent.com/14fade415c38fccdd33c05649ad23e57c5f2f058f8b5c66fcfaf010969e2620e/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032302f706e672f3735353730302f313630373835373436323530372d38353565633534332d376365332d343032642d613063622d6232353234643561346236302e706e67">
+
+<img border="rounded" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9abeb70c7e424ddebea2d50f4667b441~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?">
+</div>
+
+Read more about [How to use a theme](https://sli.dev/themes/use.html) and
+check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
+
+---
+preload: false
+---
+
+ go-zero
+
+集各种工程实践于一身的web和rpc框架。
+
+<div grid="~ cols-2 gap-2" m="-t-2">
+
+```yaml
+go-zero 微服务架构
+```
+
+```yaml
+go-zero 微服务中单体服务的项目目录结构
+```
+
+<img border="rounded" src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/architecture-en.png">
+
+<img border="rounded" src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9abeb70c7e424ddebea2d50f4667b441~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?">
+</div>
+
+Read more about [How to use a theme](https://sli.dev/themes/use.html) and
+check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
+
