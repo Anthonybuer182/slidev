@@ -477,7 +477,7 @@ go-zero 微服务架构
 go-zero 微服务项目目录结构
 ```
 <img border="rounded" src="https://go-zero.dev/cn/img/pages/index/arch-cn.svg">
-<img  src="https://img-blog.csdnimg.cn/img_convert/2b09f36fc973764f33d0dad0c51bfabf.jpeg" >
+<img  src="https://i.postimg.cc/906HS7zm/microbg.jpg" >
 <img border="rounded" src="https://user-images.githubusercontent.com/1918356/171880372-5010d846-e8b1-4942-8fe2-e2bbb584f762.png">
 
 </div>
