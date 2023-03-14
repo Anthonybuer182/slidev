@@ -262,7 +262,7 @@ func main() {
 ---
 
 # 指针与值
-Go 函数的返回值可以有多个 结构体和方法是组合的关系 函数和方法是值传递 但map，slice隐式指针传递
+Go 函数和方法是值传递 但map，slice隐式指针传递
 <br/>
 Java 结构体和方法的关系是包含 
 | Java  | Go     |
@@ -271,6 +271,9 @@ Java 结构体和方法的关系是包含
 
 ```ts {all|2|1-6|9|all}
 public class Test2 {
+	class User{
+    	String name;
+	}
     public static User updateUser(User user){
         user.name="李四";
         return user;
@@ -281,13 +284,11 @@ public class Test2 {
         User newUser = updateUser(user);
         System.out.println("地址:"+user+" 姓名:"+user.name);
         System.out.println("地址:"+newUser+" 姓名:"+newUser.name);
-//        地址:Test1$User@3498ed 年龄:李四
-//        地址:Test1$User@3498ed 年龄:李四
     }
 }
-class User{
-    String name;
-}
+//        地址:Test1$User@3498ed 年龄:李四
+//        地址:Test1$User@3498ed 年龄:李四
+
 
 ```
 ```ts {all|2|1-6|9|all}
@@ -307,9 +308,8 @@ func main() {
 	p1 := createPerson(p)
 	fmt.Print(p)
 	fmt.Println(p1)
-	// {张三 2} {李四 2}
 }
-
+// {张三 2} {李四 2}
 ```
 </div>
 
@@ -421,21 +421,20 @@ import (
 	"fmt"
 	"time"
 )
+// goroutine耗时业务处理
+func async(data int, c chan int) {
+	time.Sleep(3 * time.Second)
+	c <- data + 1
+}
 
 func main() {
 	c := make(chan int)
 	var data int = 1
 	go async(data, c)
 	msg := <-c
-	fmt.Println(msg) // 2
-	
+	fmt.Println(msg) 
 }
-
-// goroutine耗时业务处理
-func async(data int, c chan int) {
-	time.Sleep(3 * time.Second)
-	c <- data + 1
-}
+// 2
 ```
 </div>
 
